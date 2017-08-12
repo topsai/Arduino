@@ -85,7 +85,7 @@ class ASKView(APIView):
         return Response(data=data, status=HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        print('post')
+        print('post..............')
         # we have to save the request body because we need to set the version
         # before we do anything dangerous so that we can properly send exception
         # reponses and the DRF request object doesn't allow you to access the
