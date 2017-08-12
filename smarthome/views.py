@@ -37,9 +37,10 @@ def info():
     #     ser.writelines('sensor')
 
 
+
 def index(request):
-    i = info()
-    return render(request, 'index.html', {'data': i})
+    data = request
+    return render(request, 'index.html', {'data': data})
 
 
 
