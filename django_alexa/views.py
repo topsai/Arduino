@@ -93,6 +93,9 @@ class ASKView(APIView):
         body = request.body
         print('body:', body)
         print('request', request)
+        print('version:', request.data['version'])
+        print('META:', request.META)
+        print('data:', request.data)
         ResponseBuilder.set_version(request.data['version'])
         validate_alexa_request(request.META, body)
         serializer = ASKInputSerializer(data=request.data)
