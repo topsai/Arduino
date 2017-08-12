@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 def index(request):
     if request.method == "POST":
-        logging.info('POST:'+json.dumps(request.POST))
+        logging.info('POST:type({})'.format(request.POST)+json.dumps(request.POST))
 
     # test
     d = {
