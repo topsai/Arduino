@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 from .serializers import ASKInputSerializer
 from .internal import ALEXA_APP_IDS, ResponseBuilder, IntentsSchema, validate_alexa_request, validate_response_limit
 
-
 # log = logging.getLogger(__name__)
 # fh = logging.FileHandler('aaaaaaaaaa.log')
 # fh.setLevel(logging.INFO)
@@ -19,14 +18,16 @@ from .internal import ALEXA_APP_IDS, ResponseBuilder, IntentsSchema, validate_al
 # log.info('action')
 log = logging
 log.basicConfig(level=logging.INFO,
-                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                    datefmt='%a, %d %b %Y %H:%M:%S',
-                    filename='aaaaaaaaaaa.log',
-                    filemode='a')
+                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                datefmt='%a, %d %b %Y %H:%M:%S',
+                filename='aaaaaaaaaaa.log',
+                filemode='a')
 
 log.info('actions....')
 
 import django
+
+
 class ASKView(APIView):
     def handle_exception(self, exc):
         if settings.DEBUG:
@@ -91,7 +92,7 @@ class ASKView(APIView):
         # body after you have accessed the "data" stream
         body = request.body
         print('body:', body)
-        print(request)
+        print('request', request)
         ResponseBuilder.set_version(request.data['version'])
         validate_alexa_request(request.META, body)
         serializer = ASKInputSerializer(data=request.data)
