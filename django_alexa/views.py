@@ -33,7 +33,7 @@ class ASKView(APIView):
         if settings.DEBUG:
             log.exception("An error occured in your skill.")
             # msg = "An error occured in your skill.  Please check the response card for details."
-            msg = "a o"
+            msg = "en"
             title = exc.__class__.__name__
             content = traceback.format_exc()
             data = ResponseBuilder.create_response(message=msg,
@@ -94,22 +94,17 @@ class ASKView(APIView):
         body = request.body
         print('body:', body)
         print('----------------------------------------')
-        print('request', request)
-        print('----------------------------------------')
-        print('version:', request.data['version'])
-        print('----------------------------------------')
-        print('META:', request.META)
-        print('----------------------------------------')
-        print('data:', request.data)
-        print('----------------------------------------')
-
         ResponseBuilder.set_version(request.data['version'])
+        print('1----------------------------------------')
         validate_alexa_request(request.META, body)
         serializer = ASKInputSerializer(data=request.data)
+        print('2----------------------------------------')
         serializer.is_valid(raise_exception=True)
+        print('3----------------------------------------')
         return self.handle_request(serializer.validated_data)
 
     def dispatch(self, request, *args, **kwargs):
+        print('dispatch')
         log.debug("#" * 10 + "Start Alexa Request" + "#" * 10)
         response = super(ASKView, self).dispatch(request, *args, **kwargs)
         if response.status_code == 200:
