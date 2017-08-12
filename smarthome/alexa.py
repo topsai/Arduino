@@ -2,8 +2,15 @@
 # -*- coding: utf-8 -*- 
 
 from django_alexa.api import fields, intent, ResponseBuilder
+import logging
+import json
 
 HOUSES = ("gryffindor", "hufflepuff", "ravenclaw", "slytherin")
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S',
+                    filename='alexa.log',
+                    filemode='a')
 
 @intent
 def LaunchRequest(session):
@@ -16,6 +23,7 @@ def LaunchRequest(session):
     begin
     open
     """
+    logging.info(json.dumps(session))
     return ResponseBuilder.create_response(message="Welcome to Hog warts school of witchcraft and wizardry!",
                                            reprompt="What house would you like to give points to?",
                                            end_session=False,
@@ -27,8 +35,14 @@ class PointsForHouseSlots(fields.AmazonSlots):
     points = fields.AmazonNumber()
 
 
-@intent(slots=PointsForHouseSlots)
+class DoSomething(fields.AmazonSlots):
+    sb = fields.AmazonCustom()
+    status = fields.AmazonNumber()
+
+
+@intent(slots=DoSomething)
 def AddPointsToHouse(session, house, points):
+    logging.info(json.dumps(session, house, points))
     """
     Direct response to add points to a house
     ---
