@@ -51,6 +51,7 @@ data = {
     },
     "version": "1.0"
 }
-
-r = requests.post("http://127.0.0.1:8000/alexa/ask/", data=data)
+d = {}
+# r = requests.post("http://127.0.0.1:8000/alexa/ask/", data=d)
+r = requests.post("https://www.codefarmer.site/alexa/ask/", data=data)
 print(r.text)
