@@ -40,7 +40,10 @@ def info():
 
 def index(request):
     # test
-    data = request
+    if request.method =='POST':
+        data = request.POST.items()
+    else:
+        data = request.GET.items()
     return render(request, 'index.html', {'data': data})
 
 
