@@ -1,10 +1,19 @@
 from django.shortcuts import render, HttpResponse
 import json
+import logging
 
 # Create your views here.
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S',
+                    filename='alexa.log',
+                    filemode='a')
 
 
 def index(request):
+    if request.method == "POST":
+        logging.info(request.POST)
+
     # test
     d = {
         "version": "1.0",
