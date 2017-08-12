@@ -98,6 +98,7 @@ class ASKView(APIView):
         print('1----------------------------------------')
         validate_alexa_request(request.META, body)
         serializer = ASKInputSerializer(data=request.data)
+        print('data', request.data)
         print('2----------------------------------------')
         serializer.is_valid(raise_exception=True)
         print('3----------------------------------------')
