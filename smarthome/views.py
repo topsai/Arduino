@@ -39,6 +39,7 @@ def info():
 
 
 def index(request):
+    # test
     data = request
     return render(request, 'index.html', {'data': data})
 
