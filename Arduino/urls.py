@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from smarthome import views
+from django_alexa import views
 
 urlpatterns = [
     url(r'^', include('django_alexa.urls')),

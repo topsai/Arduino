@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'smarthome.apps.SmarthomeConfig',
-    'django_alexa ',
+    'django_alexa',
 ]
 
 MIDDLEWARE = [
