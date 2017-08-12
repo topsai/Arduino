@@ -23,6 +23,7 @@ def info():
     return data
     # print(time.strftime("%Y-%m-%d %X\t") + line.strip())
     # time.sleep(1)
+    
     # 每 10 秒向窗口写当前计算机时间
     # a = int(time.strftime("%S"))
     # sep = a % 10
