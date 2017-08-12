@@ -11,8 +11,11 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 def index(request):
+    dd = []
     if request.method == "POST":
-        logging.info('POST:type({})'.format(request.POST)+json.dumps(request.POST))
+        for i in request.POST.items():
+            dd.append(i)
+        logging.info('POST:type({})'.format(request.POST)+json.dumps(dd))
 
     # test
     d = {
@@ -28,3 +31,10 @@ def index(request):
         }
     }
     return HttpResponse(json.dumps(d))
+
+
+def login(request):
+    if request.method == "POST":
+        print(request.POST)
+        logging.info('login:'+request.POST)
+    return HttpResponse('ok')
