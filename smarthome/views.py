@@ -18,7 +18,7 @@ def index(request):
     d = {
         "version": "1.0",
         "response": {
-            "outputSpeech": {"type": "PlainText", "text": "弄啥类"},  # text中是语音回复的内容
+            "outputSpeech": {"type": "PlainText", "text": "nong sha lei"},  # text中是语音回复的内容
             "card": {  # 显示在Alexa APP中的内容
                 "type": "Simple",
                 "title": "Example of the Card Title",
