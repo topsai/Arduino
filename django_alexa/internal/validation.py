@@ -43,7 +43,7 @@ def validate_response_limit(value):
 
 
 def validate_app_ids(value):
-    print(value)
+    print('value:', value)
     """
     value - an alexa app id
     """
