@@ -9,6 +9,11 @@ from rest_framework.views import APIView
 from .serializers import ASKInputSerializer
 from .internal import ALEXA_APP_IDS, ResponseBuilder, IntentsSchema, validate_alexa_request, validate_response_limit
 
+
+ALEXA_APP_ID_DEFAULT = "amzn1.ask.skill.c916f111-fe9e-4b9a-9fe4-33ea7b30eeb9"
+# ALEXA_APP_ID_OTHER = "Your Amazon Alexa App ID OTHER"  # for each app
+ALEXA_REQUEST_VERIFICATON = False  # Enables/Disable request verification
+
 # log = logging.getLogger(__name__)
 # fh = logging.FileHandler('aaaaaaaaaa.log')
 # fh.setLevel(logging.INFO)
