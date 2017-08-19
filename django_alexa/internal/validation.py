@@ -19,8 +19,12 @@ except:
     from urlparse import urlparse
 
 log = logging.getLogger(__name__)
-
-ALEXA_APP_IDS = alexa_app_setting.ALEXA_APP_ID_DEFAULT if not alexa_app_setting.ALEXA_APP_ID_OTHER else alexa_app_setting.ALEXA_APP_ID_OTHER
+ALEXA_APP_IDS = {}
+if alexa_app_setting.ALEXA_APP_ID_DEFAULT:
+    ALEXA_APP_IDS[alexa_app_setting.ALEXA_APP_ID_DEFAULT] = []
+if alexa_app_setting.ALEXA_APP_ID_OTHER:
+    for i in alexa_app_setting.ALEXA_APP_ID_OTHER:
+        ALEXA_APP_IDS[i] = []
 ALEXA_REQUEST_VERIFICATON = alexa_app_setting.ALEXA_REQUEST_VERIFICATON
 
 
@@ -43,7 +47,7 @@ def validate_app_ids(value):
     """
     value - an alexa app id
     """
-    if value not in ALEXA_APP_IDS:
+    if value not in ALEXA_APP_IDS.items():
         msg = "{0} is not one of the valid alexa skills application ids for this service".format(value)
         raise InternalError(msg)
 
