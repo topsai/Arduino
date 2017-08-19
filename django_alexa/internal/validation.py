@@ -20,11 +20,12 @@ except:
 
 log = logging.getLogger(__name__)
 ALEXA_APP_IDS = {}
-if alexa_app_setting.ALEXA_APP_ID_DEFAULT:
-    ALEXA_APP_IDS[alexa_app_setting.ALEXA_APP_ID_DEFAULT] = []
-if alexa_app_setting.ALEXA_APP_ID_OTHER:
-    for i in alexa_app_setting.ALEXA_APP_ID_OTHER:
-        ALEXA_APP_IDS[i] = []
+ALEXA_APP_IDS[alexa_app_setting.ALEXA_APP_ID_DEFAULT] = alexa_app_setting.ALEXA_APP_ID_OTHER
+# if alexa_app_setting.ALEXA_APP_ID_DEFAULT:
+#     ALEXA_APP_IDS[alexa_app_setting.ALEXA_APP_ID_DEFAULT] = []
+# if alexa_app_setting.ALEXA_APP_ID_OTHER:
+#     for i in alexa_app_setting.ALEXA_APP_ID_OTHER:
+#         ALEXA_APP_IDS[i] = []
 ALEXA_REQUEST_VERIFICATON = alexa_app_setting.ALEXA_REQUEST_VERIFICATON
 
 
