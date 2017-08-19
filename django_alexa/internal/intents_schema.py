@@ -51,7 +51,7 @@ class IntentsSchema():
         if slots:
             if not issubclass(slots, AmazonSlots):
                 msg = "'{0}' slot is not a valid alexa slot".format(slots.__name__)
-                logging.warn(msg)
+                logging.warning(msg)
                 slots = None
             else:
                 s = slots()
@@ -156,3 +156,4 @@ def intent(*args, **kwargs):
         IntentsSchema.register(func, intent, slots, app)
         return func
     return register if invoked else register(func)
+

@@ -10,6 +10,8 @@ import pytz
 from datetime import datetime, timedelta
 from OpenSSL import crypto
 from .exceptions import InternalError
+from django_alexa import alexa_app_setting
+
 # Test for python 3
 try:
     from urllib.parse import urlparse
@@ -18,11 +20,14 @@ except:
 
 log = logging.getLogger(__name__)
 
+ALEXA_APP_IDS = alexa_app_setting.ALEXA_APP_ID_DEFAULT if not alexa_app_setting.ALEXA_APP_ID_OTHER else alexa_app_setting.ALEXA_APP_ID_OTHER
+ALEXA_REQUEST_VERIFICATON = alexa_app_setting.ALEXA_REQUEST_VERIFICATON
 
-ALEXA_APP_IDS = dict([(str(os.environ[envvar]), envvar.replace("ALEXA_APP_ID_", "")) for envvar in os.environ.keys() if envvar.startswith('ALEXA_APP_ID_')])
-ALEXA_REQUEST_VERIFICATON = ast.literal_eval(os.environ.get('ALEXA_REQUEST_VERIFICATON', 'True'))
-print(ALEXA_APP_IDS)
-print(ALEXA_REQUEST_VERIFICATON)
+
+# ALEXA_APP_IDS = dict([(str(os.environ[envvar]), envvar.replace("ALEXA_APP_ID_", "")) for envvar in os.environ.keys() if envvar.startswith('ALEXA_APP_ID_')])
+# ALEXA_REQUEST_VERIFICATON = ast.literal_eval(os.environ.get('ALEXA_REQUEST_VERIFICATON', 'True'))
+# print(ALEXA_APP_IDS)
+# print(ALEXA_REQUEST_VERIFICATON)
 
 def validate_response_limit(value):
     """
@@ -124,5 +129,6 @@ def validate_alexa_request(request_headers, request_body):
             raise InternalError("Invalid Request Timestamp", {"error": 400})
         if verify_cert_url(request_headers.get('HTTP_SIGNATURECERTCHAINURL')) is False:
             raise InternalError("Invalid Certificate Chain URL", {"error": 400})
-        if verify_signature(request_body, request_headers.get('HTTP_SIGNATURE'), request_headers.get('HTTP_SIGNATURECERTCHAINURL')) is False:
+        if verify_signature(request_body, request_headers.get('HTTP_SIGNATURE'),
+                            request_headers.get('HTTP_SIGNATURECERTCHAINURL')) is False:
             raise InternalError("Invalid Request Signature", {"error": 400})
