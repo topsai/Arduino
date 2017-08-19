@@ -39,10 +39,11 @@ def validate_response_limit(value):
 
 
 def validate_app_ids(value):
+    print(value)
     """
     value - an alexa app id
     """
-    if value not in ALEXA_APP_IDS.keys():
+    if value not in ALEXA_APP_IDS:
         msg = "{0} is not one of the valid alexa skills application ids for this service".format(value)
         raise InternalError(msg)
 
