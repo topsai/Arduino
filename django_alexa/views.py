@@ -32,7 +32,7 @@ class ASKView(APIView):
         if settings.DEBUG:
             log.exception("An error occured in your skill.")
             # msg = "An error occured in your skill.  Please check the response card for details."
-            msg = "en"
+            msg = "en error"
             title = exc.__class__.__name__
             content = traceback.format_exc()
             data = ResponseBuilder.create_response(message=msg,
