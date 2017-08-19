@@ -21,6 +21,8 @@ class IntentsSchema():
 
     @classmethod
     def get_intent(cls, app, intent):
+        print('app:', app)
+        print('intent', intent)
         key_name = app + "." + intent
         if key_name not in cls.intents.keys():
             if intent in DEFAULT_INTENTS:
@@ -155,5 +157,5 @@ def intent(*args, **kwargs):
         slots = kwargs.get('slots', None)
         IntentsSchema.register(func, intent, slots, app)
         return func
-    return register if invoked else register(func)
 
+    return register if invoked else register(func)
