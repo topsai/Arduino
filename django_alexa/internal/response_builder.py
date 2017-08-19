@@ -55,21 +55,21 @@ class ResponseBuilder(object):
         data = {}
         data['version'] = cls.version
         data['response'] = cls._create_response(message, message_is_ssml,
-                                               reprompt, reprompt_is_ssml, reprompt_append,
-                                               title, content, card_type,
-                                               card_image_small, card_image_large, card_text,
-                                               end_session)
+                                                reprompt, reprompt_is_ssml, reprompt_append,
+                                                title, content, card_type,
+                                                card_image_small, card_image_large, card_text,
+                                                end_session)
         data['sessionAttributes'] = kwargs
         log.debug("Response Data: {0}".format(data))
         return data
 
     @classmethod
     def _create_response(cls,
-                        message=None, message_is_ssml=False,
-                        reprompt=None, reprompt_is_ssml=False, reprompt_append=True,
-                        title=None, content=None, card_type=None,
-                        card_image_small=None, card_image_large=None, card_text=None,
-                        end_session=True):
+                         message=None, message_is_ssml=False,
+                         reprompt=None, reprompt_is_ssml=False, reprompt_append=True,
+                         title=None, content=None, card_type=None,
+                         card_image_small=None, card_image_large=None, card_text=None,
+                         end_session=True):
         data = {}
         data['shouldEndSession'] = end_session
         if message:
@@ -105,7 +105,7 @@ class ResponseBuilder(object):
     def _create_reprompt(cls, message=None, is_ssml=False):
         data = {}
         data['outputSpeech'] = cls._create_speech(message=message,
-                                                 is_ssml=is_ssml)
+                                                  is_ssml=is_ssml)
         return data
 
     @classmethod
