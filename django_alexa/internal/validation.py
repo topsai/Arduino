@@ -47,7 +47,7 @@ def validate_app_ids(value):
     """
     value - an alexa app id
     """
-    if value not in ALEXA_APP_IDS.items():
+    if value not in ALEXA_APP_IDS.keys():
         msg = "{0} is not one of the valid alexa skills application ids for this service".format(value)
         raise InternalError(msg)
 
