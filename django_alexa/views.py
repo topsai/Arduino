@@ -28,6 +28,7 @@ log.info('actions....')
 
 class ASKView(APIView):
     def handle_exception(self, exc):
+        print('exc:', exc)
         if settings.DEBUG:
             log.exception("An error occured in your skill.")
             # msg = "An error occured in your skill.  Please check the response card for details."
