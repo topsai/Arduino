@@ -25,8 +25,6 @@ log.basicConfig(level=logging.INFO,
 
 log.info('actions....')
 
-import django
-
 
 class ASKView(APIView):
     def handle_exception(self, exc):
