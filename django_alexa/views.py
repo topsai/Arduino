@@ -59,9 +59,11 @@ class ASKView(APIView):
                 log.debug(data)
                 return HttpResponseBadRequest()
             else:
+                print('ret data', data)
                 # If we are passed an error code we should probably do something more here, but for now - this works.
                 return Response(data=data, status=HTTP_200_OK)
         except:
+            print('ret data', data)
             return Response(data=data, status=HTTP_200_OK)
 
     def handle_request(self, validated_data):
