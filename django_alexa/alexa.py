@@ -67,18 +67,12 @@ def SessionEndedRequest(**kwargs):
     return ResponseBuilder.create_response()
 
 
-@intent
-def Operatesomething(**kwargs):
-    print(kwargs)
-    return ResponseBuilder.create_response()
-
-
-HOUSES = ("gryffindor", "hufflepuff", "ravenclaw", "slytherin")
-
-
 class PointsForHouseSlots(fields.AmazonSlots):
-    ststus = fields.AmazonCustom(label="HOUSE_LIST", choices=HOUSES)
-    sb = fields.AmazonNumber()
+    status = fields.AmazonEvent()
+    device = fields.AmazonDevice()
+
+    def get_fields(self):
+        return {'status': self.status, 'device': self.device}
 
 
 @intent(slots=PointsForHouseSlots)

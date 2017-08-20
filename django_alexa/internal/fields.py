@@ -15,8 +15,15 @@ class AmazonField(object):
         return self.amazon_name
 
 
-class AmazonCustom(AmazonField):
+class AmazonEvent(AmazonField):
+    amazon_name = "AMAZON.EventType"
 
+
+class AmazonDevice(AmazonField):
+    amazon_name = "AMAZON.DeviceType"
+
+
+class AmazonCustom(AmazonField):
     def get_choices(self):
         return []
 
