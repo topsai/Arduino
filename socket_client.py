@@ -35,7 +35,7 @@ def on_open(ws):
 
 if __name__ == "__main__":
     websocket.enableTrace(True)
-    ws = websocket.WebSocketApp("wss://www.codefarmer.site:443/talk/",
+    ws = websocket.WebSocketApp("wss://www.codefarmer.site/talk/",
                                 on_message=on_message,
                                 on_error=on_error,
                                 on_close=on_close,
