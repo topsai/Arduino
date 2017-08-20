@@ -64,3 +64,8 @@ def SessionEndedRequest(**kwargs):
     quit
     """
     return ResponseBuilder.create_response()
+
+@intent
+def Operatesomething(**kwargs):
+    print(kwargs)
+    return ResponseBuilder.create_response()

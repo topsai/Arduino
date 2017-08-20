@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 from .serializers import ASKInputSerializer
 from .internal import ALEXA_APP_IDS, ResponseBuilder, IntentsSchema, validate_alexa_request, validate_response_limit
 
-
 ALEXA_APP_ID_DEFAULT = "amzn1.ask.skill.c916f111-fe9e-4b9a-9fe4-33ea7b30eeb9"
 # ALEXA_APP_ID_OTHER = "Your Amazon Alexa App ID OTHER"  # for each app
 ALEXA_REQUEST_VERIFICATON = False  # Enables/Disable request verification
@@ -67,7 +66,7 @@ class ASKView(APIView):
             return Response(data=data, status=HTTP_200_OK)
 
     def handle_request(self, validated_data):
-        print('request')
+        print('handle_request')
         log.info("Alexa Request Body: {0}".format(validated_data))
         intent_kwargs = {}
         session = validated_data['session']
@@ -118,3 +117,6 @@ class ASKView(APIView):
             validate_response_limit(response.render().content)
         log.debug("#" * 10 + "End Alexa Request" + "#" * 10)
         return response
+
+
+content = 'Traceback (most recent call last):\n  File "/usr/local/virtunlenvs/Arduino/virtual_evn/lib/python3.6/site-packages/rest_framework/views.py", line 486, in dispatch\n    response = handler(request, *args, **kwargs)\n  File "./django_alexa/views.py", line 111, in post\n    return self.handle_request(serializer.validated_data)\n  File "./django_alexa/views.py", line 91, in handle_request\n    data = IntentsSchema.route(session, app, intent_name, intent_kwargs)\n  File "./django_alexa/internal/intents_schema.py", line 46, in route\n    func.__module__,\nAttributeError: \'NoneType\' object has no attribute \'__module__\'\n'

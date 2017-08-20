@@ -21,8 +21,7 @@ class IntentsSchema():
 
     @classmethod
     def get_intent(cls, app, intent):
-        print('app:', app)
-        print('intent', intent)
+        print('cls.intents.keys:', cls.intents.keys())
         key_name = app + "." + intent
         if key_name not in cls.intents.keys():
             if intent in DEFAULT_INTENTS:
