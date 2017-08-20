@@ -75,7 +75,7 @@ class PointsForHouseSlots(fields.AmazonSlots):
         return {'status': self.status, 'device': self.device}
 
 
-@intent(slots=PointsForHouseSlots)
+@intent(slots=PointsForHouseSlots, app='light')
 def Operatesomething(session, house, points):
     """
     Direct response to add points to a house
