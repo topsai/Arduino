@@ -74,6 +74,9 @@ class PointsForHouseSlots(fields.AmazonSlots):
     def get_fields(self):
         return {'status': self.status, 'device': self.device}
 
+    def __init__(self, data):
+        print('PointsForHouseSlots-data', data)
+
 
 @intent(slots=PointsForHouseSlots, app='light')
 def Operatesomething(session, house, points):
@@ -92,4 +95,3 @@ def Operatesomething(session, house, points):
         kwargs['end_session'] = False
         kwargs['launched'] = session['launched']
     return ResponseBuilder.create_response(**kwargs)
-
