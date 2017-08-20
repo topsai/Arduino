@@ -7,8 +7,9 @@ ALEXA_APP_ID_OTHER = "light"  # "Your Amazon Alexa App ID OTHER"  # for each app
 ALEXA_REQUEST_VERIFICATON = False  # Enables/Disable request verification
 
 
-def Operatesomething():
-    print('Operatesomething')
-
-print('regist----')
-IntentsSchema.register(app="light", func=Operatesomething(), intent="Operatesomething")
+# def Operatesomething():
+#
+#     print('Operatesomething')
+#
+# print('regist----')
+# IntentsSchema.register(app="light", func=Operatesomething(), intent="Operatesomething")

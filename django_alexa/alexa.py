@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from .api import intent, ResponseBuilder
+from django_alexa.internal import fields
 
 
 @intent
@@ -65,7 +66,35 @@ def SessionEndedRequest(**kwargs):
     """
     return ResponseBuilder.create_response()
 
+
 @intent
 def Operatesomething(**kwargs):
     print(kwargs)
     return ResponseBuilder.create_response()
+
+
+HOUSES = ("gryffindor", "hufflepuff", "ravenclaw", "slytherin")
+
+
+class PointsForHouseSlots(fields.AmazonSlots):
+    ststus = fields.AmazonCustom(label="HOUSE_LIST", choices=HOUSES)
+    sb = fields.AmazonNumber()
+
+
+@intent(slots=PointsForHouseSlots)
+def Operatesomething(session, house, points):
+    """
+    Direct response to add points to a house
+    ---
+    {points} {house}
+    {points} points {house}
+    add {points} points to {house}
+    give {points} points to {house}
+    """
+    kwargs = {}
+    kwargs['message'] = "{0} points added to house {1}.".format(points, house)
+    if session.get('launched'):
+        kwargs['reprompt'] = "What house would you like to give points to?"
+        kwargs['end_session'] = False
+        kwargs['launched'] = session['launched']
+    return ResponseBuilder.create_response(**kwargs)
