@@ -74,8 +74,6 @@ class PointsForHouseSlots(fields.AmazonSlots):
     def get_fields(self):
         return {'status': self.status, 'device': self.device}
 
-    def __init__(self, data):
-        print('PointsForHouseSlots-data', data)
 
 
 @intent(slots=PointsForHouseSlots, app='light')

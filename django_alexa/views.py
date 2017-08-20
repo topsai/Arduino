@@ -80,6 +80,7 @@ class ASKView(APIView):
                 except KeyError:
                     slot_value = None
                 intent_kwargs[slot_key] = slot_value
+                print('slot_key:', slot_key, 'slot_value:', slot_value)
         else:
             intent_name = validated_data["request"]["type"]
         _, slot = IntentsSchema.get_intent(app, intent_name)
