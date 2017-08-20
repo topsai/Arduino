@@ -101,7 +101,7 @@ def Operatesomething(session, device, status, ):
     r = redis.Redis(host='127.0.0.1', port=6379, db=0)
     all_device = r.get('all_device')
     import json
-    dd = json.dumps(all_device.decode())
+    dd = json.loads(all_device.decode())
     print(dd, type(dd))
     from channels import Group, channel
     # channel.Channel(message.reply_channel.name).send({'text': 'ok'})
