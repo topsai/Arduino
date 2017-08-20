@@ -99,7 +99,7 @@ def Operatesomething(session, device, status, ):
     r = redis.Redis(host='127.0.0.1', port=6379, db=0)
     from alexa_channel.consumers import all_device
     from channels import Group, channel
-    channel.Channel(all_device.get('smarthome')).send(data)
+    channel.Channel(all_device.get('smarthome')).send({'text':data})
     kwargs['message'] = "your {0} is {1}.".format(device, status)
     if session.get('launched'):
         kwargs['reprompt'] = "ok !"
