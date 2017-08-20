@@ -35,13 +35,10 @@ def on_open(ws):
 
 if __name__ == "__main__":
     websocket.enableTrace(True)
-    ws = websocket.WebSocketApp("wss://www.codefarmer.site/talk/",
+    ws = websocket.WebSocketApp("ws://www.codefarmer.site/talk/",
                                 on_message=on_message,
                                 on_error=on_error,
                                 on_close=on_close,
                                 )
     ws.on_open = on_open
     ws.run_forever()
-
-
-# ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_callback', '_get_close_args', '_send_ping', 'close', 'cookie', 'get_mask_key', 'header', 'keep_running', 'last_ping_tm', 'last_pong_tm', 'mmm', 'on_close', 'on_cont_message', 'on_data', 'on_error', 'on_message', 'on_open', 'on_ping', 'on_pong', 'run_forever', 'send', 'sock', 'subprotocols', 'url']
