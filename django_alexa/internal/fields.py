@@ -2,9 +2,16 @@
 from __future__ import absolute_import
 
 
+class Obj(object):
+    def __init__(self, data):
+        self.__dict__.update(data)
+
+
 class AmazonSlots(object):
     '''Base for all amazon slots'''
-    pass
+
+    def create(self, validated_data):
+        return Obj(data=validated_data)
 
 
 class AmazonField(object):
