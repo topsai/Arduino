@@ -96,13 +96,14 @@ def Operatesomething(session, device, status, ):
     print('session, device, status', session, device, status)
     kwargs = {}
     data = {'text': device + ',' + status}
-    from alexa_channel.consumers import all_device
-    print(all_device)
-    r = redis.Redis(host='127.0.0.1', port=6379, db=0)
-    r.get('all_device')
-    print(r)
     # from alexa_channel.consumers import all_device
-    # from channels import Group, channel
+    # print(all_device)
+    r = redis.Redis(host='127.0.0.1', port=6379, db=0)
+    print(r.get('all_device'))
+    from channels import Group, channel
+    # channel.Channel(message.reply_channel.name).send({'text': 'ok'})
+    # from alexa_channel.consumers import all_device
+    #
     # channel.Channel(all_device.get('smarthome')).send(data)
     print(data)
     kwargs['message'] = "your {0} is {1}.".format(device, status)

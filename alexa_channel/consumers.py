@@ -47,8 +47,10 @@ def user_receive(message):
     text = message.content.get('text')
     data = json.loads(text)
     if data.get('device'):
-        print('设备上线', data.get('device'))
-        all_device[data.get('device')] = message.reply_channel
+        print('设备上线', data.get('device'), message.reply_channel.name)
+
+        # print(dir(message.reply_channel))
+        all_device[data.get('device')] = message.reply_channel.name
     r = redis.Redis(host='127.0.0.1', port=6379, db=0)
     r.set('all_device', all_device)  # 添加
 
