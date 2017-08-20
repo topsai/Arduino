@@ -83,6 +83,7 @@ class ASKView(APIView):
         else:
             intent_name = validated_data["request"]["type"]
         _, slot = IntentsSchema.get_intent(app, intent_name)
+        print('slot', slot)
         if slot:
             slots = slot(data=intent_kwargs)
             slots.is_valid()
@@ -117,6 +118,3 @@ class ASKView(APIView):
             validate_response_limit(response.render().content)
         log.debug("#" * 10 + "End Alexa Request" + "#" * 10)
         return response
-
-
-content = 'Traceback (most recent call last):\n  File "/usr/local/virtunlenvs/Arduino/virtual_evn/lib/python3.6/site-packages/rest_framework/views.py", line 486, in dispatch\n    response = handler(request, *args, **kwargs)\n  File "./django_alexa/views.py", line 111, in post\n    return self.handle_request(serializer.validated_data)\n  File "./django_alexa/views.py", line 91, in handle_request\n    data = IntentsSchema.route(session, app, intent_name, intent_kwargs)\n  File "./django_alexa/internal/intents_schema.py", line 46, in route\n    func.__module__,\nAttributeError: \'NoneType\' object has no attribute \'__module__\'\n'

@@ -92,3 +92,4 @@ def Operatesomething(session, house, points):
         kwargs['end_session'] = False
         kwargs['launched'] = session['launched']
     return ResponseBuilder.create_response(**kwargs)
+
