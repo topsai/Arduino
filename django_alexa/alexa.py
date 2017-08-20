@@ -106,3 +106,5 @@ def Operatesomething(session, device, status, ):
         kwargs['end_session'] = True
         kwargs['launched'] = session['launched']
     return ResponseBuilder.create_response(**kwargs)
+
+

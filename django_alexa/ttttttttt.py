@@ -60,5 +60,3 @@ print(r.status_code)
 print(r.encoding)
 print(r.text)
 print(r.json())
-
-aa = 'Traceback (most recent call last):\n  File "/usr/local/virtunlenvs/Arduino/virtual_evn/lib/python3.6/site-packages/rest_framework/views.py", line 486, in dispatch\n    response = handler(request, *args, **kwargs)\n  File "./django_alexa/views.py", line 111, in post\n    return self.handle_request(serializer.validated_data)\n  File "./django_alexa/views.py", line 86, in handle_request\n    _, slot = IntentsSchema.get_intent(app, intent_name)\n  File "./django_alexa/internal/intents_schema.py", line 32, in get_intent\n    raise InternalError(msg)\ndjango_alexa.internal.exceptions.InternalError: Unable to find an intent defined for \'Operatesomething.Operatesomething\'\n'
