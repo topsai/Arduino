@@ -74,6 +74,12 @@ class PointsForHouseSlots(fields.AmazonSlots):
     def get_fields(self):
         return {'status': self.status, 'device': self.device}
 
+    def __init__(self, data):
+        self.data = data
+
+    def is_valid(self):
+        # 验证没做
+        return True
 
 
 @intent(slots=PointsForHouseSlots, app='light')

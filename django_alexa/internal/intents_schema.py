@@ -55,7 +55,8 @@ class IntentsSchema():
                 logging.warning(msg)
                 slots = None
             else:
-                s = slots()
+                # edit  slots() to slots
+                s = slots
                 for field_name, field in s.get_fields().items():
                     if issubclass(field.__class__, AmazonField) is not True:
                         msg = "'{0}' on slot '{1}' is not a valid alexa slot field type"
