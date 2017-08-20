@@ -45,6 +45,8 @@ class IntentsSchema():
                                                                      func.__module__,
                                                                      func.__name__)
         log.info(msg)
+        print('intent_kwargs:', intent_kwargs)
+        print('func:', func)
         return func(**intent_kwargs)
 
     @classmethod
