@@ -5,3 +5,5 @@ from .validation import validate_response_limit, validate_alexa_request, validat
     ALEXA_APP_IDS  # flake8: noqa
 from .intents_schema import intent, IntentsSchema  # flake8: noqa
 from .response_builder import ResponseBuilder  # flake8: noqa
+
+

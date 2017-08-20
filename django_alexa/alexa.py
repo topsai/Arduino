@@ -83,7 +83,7 @@ class PointsForHouseSlots(fields.AmazonSlots):
 
 
 @intent(slots=PointsForHouseSlots, app='light')
-def Operatesomething(session, house, points):
+def Operatesomething(session, house, points, device):
     """
     Direct response to add points to a house
     ---
@@ -92,6 +92,7 @@ def Operatesomething(session, house, points):
     add {points} points to {house}
     give {points} points to {house}
     """
+    print('session, house, points, device', session, house, points, device)
     kwargs = {}
     kwargs['message'] = "{0} points added to house {1}.".format(points, house)
     if session.get('launched'):
