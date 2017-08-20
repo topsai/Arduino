@@ -99,7 +99,8 @@ def Operatesomething(session, device, status, ):
     # from alexa_channel.consumers import all_device
     # print(all_device)
     r = redis.Redis(host='127.0.0.1', port=6379, db=0)
-    print(r.get('all_device'))
+    all_device = r.get('all_device')
+    print(type(all_device))
     from channels import Group, channel
     # channel.Channel(message.reply_channel.name).send({'text': 'ok'})
     # from alexa_channel.consumers import all_device
