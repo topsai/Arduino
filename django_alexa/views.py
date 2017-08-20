@@ -87,6 +87,7 @@ class ASKView(APIView):
         print('slot', slot)
         if slot:
             slots = slot(data=intent_kwargs)
+            print('slots:', slots)
             slots.is_valid()
             intent_kwargs = slots.data
         data = IntentsSchema.route(session, app, intent_name, intent_kwargs)
