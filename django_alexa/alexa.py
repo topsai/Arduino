@@ -83,7 +83,7 @@ class PointsForHouseSlots(fields.AmazonSlots):
 
 
 @intent(slots=PointsForHouseSlots, app='light')
-def Operatesomething(session, house, points, device, status, ):
+def Operatesomething(session, device, status, ):
     """
     Direct response to add points to a house
     ---
@@ -92,11 +92,11 @@ def Operatesomething(session, house, points, device, status, ):
     add {points} points to {house}
     give {points} points to {house}
     """
-    print('session, house, points, device, status', session, house, points, device, status)
+    print('session, device, status', session, device, status)
     kwargs = {}
-    kwargs['message'] = "{0} points added to house {1}.".format(points, house)
+    kwargs['message'] = "your {0} is {1}.".format(device, status)
     if session.get('launched'):
-        kwargs['reprompt'] = "What house would you like to give points to?"
-        kwargs['end_session'] = False
+        kwargs['reprompt'] = "ok !"
+        kwargs['end_session'] = True
         kwargs['launched'] = session['launched']
     return ResponseBuilder.create_response(**kwargs)
