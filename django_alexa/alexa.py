@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from .api import intent, ResponseBuilder
 from django_alexa.internal import fields
+import redis
 
 
 @intent
@@ -94,6 +95,9 @@ def Operatesomething(session, device, status, ):
     """
     print('session, device, status', session, device, status)
     kwargs = {}
+    r = redis.Redis(host='127.0.0.1', port=6379, db=0)
+    all_device = r.get('all_device')
+    print(all_device)
     kwargs['message'] = "your {0} is {1}.".format(device, status)
     if session.get('launched'):
         kwargs['reprompt'] = "ok !"
