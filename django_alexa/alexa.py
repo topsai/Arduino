@@ -98,7 +98,9 @@ def Operatesomething(session, device, status, ):
     data = {'text': device + ',' + status}
     from alexa_channel.consumers import all_device
     print(all_device)
-    # r = redis.Redis(host='127.0.0.1', port=6379, db=0)
+    r = redis.Redis(host='127.0.0.1', port=6379, db=0)
+    r.get('all_device')
+    print(r)
     # from alexa_channel.consumers import all_device
     # from channels import Group, channel
     # channel.Channel(all_device.get('smarthome')).send(data)
