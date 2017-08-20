@@ -57,7 +57,7 @@ class IntentsSchema():
             else:
                 # edit  slots() to slots
                 s = slots
-                for field_name, field in s.get_fields().items():
+                for field_name, field in s.get_fields(s).items():
                     if issubclass(field.__class__, AmazonField) is not True:
                         msg = "'{0}' on slot '{1}' is not a valid alexa slot field type"
                         msg = msg.format(field_name, s.__class__.__name__)
