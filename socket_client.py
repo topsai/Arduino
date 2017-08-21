@@ -1,9 +1,21 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*- 
+# 客户端 运行在arduino上游设备
+# 负责与服务器通讯，并将服务器下发的消息解析发送给arduino
 
 
 import websocket
-import time
+
+
+def opeate_arduino(device, status):
+    # 操作设备，连接并操作设备，返回操作是否成功
+    # TODO ing...
+    ret = False
+    import serial
+    s = serial.Serial()
+    s.write()
+    return ret
+
 
 
 def on_message(ws, message):
