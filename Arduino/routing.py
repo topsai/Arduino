@@ -3,7 +3,7 @@
 from channels.routing import route, include
 
 # from StudentManagement.comsumers import ws_connect, ws_disconnect, ws_receive
-from alexa_channel.consumers import ws_connect, ws_disconnect, user_connect, user_disconnect, user_receive
+from alexa_channel.consumers import ws_connect, ws_disconnect, user_connect, user_disconnect, user_receive, send_invite
 
 channel_routing = [
     route('websocket.connect', ws_connect),
@@ -12,12 +12,14 @@ channel_routing = [
 user_routing = [
     route('websocket.connect', user_connect),
     route('websocket.disconnect', user_disconnect),
-    route('websocket.receive', user_receive)
+    route('websocket.receive', user_receive),
+
 ]
 routing = [
     include(channel_routing, path=r"^/users"),
     # 同django可以使用include代替route指定路由组
     include(user_routing, path=r"^/talk"),
+    route('send-invite', send_invite),
     # 同django可以使用include代替route指定路由组
     # include(http_routing),
 ]

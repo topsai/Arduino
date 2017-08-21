@@ -3,9 +3,9 @@
 
 
 import json
-from channels import Group, channel
+from channels import Group, Channel
 import redis
-from channels.auth import channel_session_user, channel_session_user_from_http, channel_session
+import logging
 
 all_device = {}
 
@@ -33,13 +33,24 @@ def ws_disconnect(message):
 
 
 def user_connect(message):
-    print('user_connect')
-    message.reply_channel.send({'accept': True})
+    # 连接认证，没有cookie信息拒绝链接
+    accept = False
+    cookie_value = None
+
+    for i in message.content['headers']:
+        if i[0] == b'cookie' and i[1]:
+            accept = True
+            cookie_value = i[1]
+    message.reply_channel.send({'accept': accept})
+    if accept:
+        all_device[cookie_value.decode()] = message.reply_channel.name
+
+
 
 
 def user_disconnect(message):
-    print('user_disconnect')
-    print(message.reply_channel)
+    text = message.content.get('text')
+    # print(message.content.reply_channel)
 
 
 def user_receive(message):
@@ -48,9 +59,10 @@ def user_receive(message):
     data = json.loads(text)
     if data.get('device'):
         print('设备上线', data.get('device'), message.reply_channel.name)
-
-        # print(dir(message.reply_channel))
         all_device[data.get('device')] = message.reply_channel.name
-    r = redis.Redis(host='127.0.0.1', port=6379, db=0)
-    r.set('all_device', all_device)  # 添加
 
+
+def send_invite(message):
+    print('send message')
+    print(all_device)
+    Channel(all_device.get('smarthome')).send({'text': 'light on'})
