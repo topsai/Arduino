@@ -13,21 +13,21 @@ ALEXA_APP_ID_DEFAULT = "amzn1.ask.skill.c916f111-fe9e-4b9a-9fe4-33ea7b30eeb9"
 # ALEXA_APP_ID_OTHER = "Your Amazon Alexa App ID OTHER"  # for each app
 ALEXA_REQUEST_VERIFICATON = False  # Enables/Disable request verification
 
-# log = logging.getLogger(__name__)
+log = logging.getLogger(__name__)
 # fh = logging.FileHandler('aaaaaaaaaa.log')
 # fh.setLevel(logging.INFO)
 # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 # fh.setFormatter(formatter)
 # log.addHandler(fh)
 # log.info('action')
-log = logging
-log.basicConfig(level=logging.INFO,
-                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                datefmt='%a, %d %b %Y %H:%M:%S',
-                filename='aaaaaaaaaaa.log',
-                filemode='a')
-
-log.info('actions....')
+# log = logging
+# log.basicConfig(level=logging.INFO,
+#                 format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+#                 datefmt='%a, %d %b %Y %H:%M:%S',
+#                 filename='aaaaaaaaaaa.log',
+#                 filemode='a')
+#
+# log.info('actions....')
 
 
 class ASKView(APIView):

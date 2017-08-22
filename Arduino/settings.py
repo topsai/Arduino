@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'smarthome.apps.SmarthomeConfig',
     'django_alexa',
     'channels',
 ]
