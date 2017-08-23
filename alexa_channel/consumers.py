@@ -29,7 +29,8 @@ def user_disconnect(message):
             device = k
             del all_device[k]
             break
-    print('设备下线', device, message.reply_channel.name)
+    if device:
+        print('设备下线', device, message.reply_channel.name)
 
 
 def user_receive(message):

@@ -37,7 +37,7 @@ if __name__ == "__main__":
     websocket.enableTrace(True)
     href = "ws://www.codefarmer.site/talk/"
     href1 = "ws://127.0.0.1:8000/talk/"
-    ws = websocket.WebSocketApp(href1,
+    ws = websocket.WebSocketApp(href,
                                 on_message=on_message,
                                 on_error=on_error,
                                 on_close=on_close,
