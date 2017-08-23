@@ -6,6 +6,7 @@ all_device = {}
 
 
 def user_connect(message):
+    print('connect', message)
     # 连接认证，没有cookie信息拒绝链接
     accept = False
     cookie_value = None
