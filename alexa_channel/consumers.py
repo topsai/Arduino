@@ -6,7 +6,7 @@ all_device = {}
 
 
 def user_connect(message):
-    print('connect', message)
+    print('connect: ', message)
     # 连接认证，没有cookie信息拒绝链接
     accept = False
     cookie_value = None
@@ -18,7 +18,7 @@ def user_connect(message):
     message.reply_channel.send({'accept': accept})
     if accept:
         all_device[cookie_value.decode()] = message.reply_channel.name
-        print('设备上线', cookie_value.decode(), message.reply_channel.name)
+        print('device up', cookie_value.decode(), message.reply_channel.name)
 
 
 def user_disconnect(message):
@@ -30,11 +30,11 @@ def user_disconnect(message):
             del all_device[k]
             break
     if device:
-        print('设备下线', device, message.reply_channel.name)
+        print('device down', device, message.reply_channel.name)
 
 
 def user_receive(message):
-    print('收到信息：%s ' % (message.content))
+    print('recv msg:%s ' % (message.content))
 
 
 def send_invite(message):
