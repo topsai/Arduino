@@ -106,9 +106,12 @@ def Operatesomething(session, device, status, ):
     # channel.Channel(dd.get('smarthome')).send({'text': data})
     from alexa_channel.consumers import all_device
     #
-    # channel.Channel(all_device.get('smarthome')).send(data)
-    print(all_device)
-    kwargs['message'] = "your {0} is {1}.".format(device, status)
+    if all_device.get('smarthome'):
+        channel.Channel(all_device.get('smarthome')).send(data)
+        kwargs['message'] = "your {0} is {1}.".format(device, status)
+    else:
+        kwargs['message'] = "your device not online."
+
     if session.get('launched'):
         kwargs['reprompt'] = "ok !"
         kwargs['end_session'] = True
