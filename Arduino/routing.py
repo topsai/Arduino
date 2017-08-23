@@ -3,11 +3,11 @@
 from channels.routing import route, include
 
 # from StudentManagement.comsumers import ws_connect, ws_disconnect, ws_receive
-from alexa_channel.consumers import ws_connect, ws_disconnect, user_connect, user_disconnect, user_receive, send_invite
+from alexa_channel.consumers import user_connect, user_disconnect, user_receive, send_invite
 
 channel_routing = [
-    route('websocket.connect', ws_connect),
-    route('websocket.disconnect', ws_disconnect),
+    # route('websocket.connect', ws_connect),
+    # route('websocket.disconnect', ws_disconnect),
 ]
 user_routing = [
     route('websocket.connect', user_connect),

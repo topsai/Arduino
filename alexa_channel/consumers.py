@@ -1,35 +1,8 @@
 #!/usr/bin/env python 
-# -*- coding: utf-8 -*- 
-
-
-import json
+# -*- coding: utf-8 -*-
 from channels import Group, Channel
-import redis
-import logging
 
 all_device = {}
-
-
-def ws_connect(message):
-    print('ws_connect')
-    Group('users').add(message.reply_channel)
-    Group('users').send({
-        'text': json.dumps({
-            'username': message.user.username,
-            'is_logged_in': True
-        })
-    })
-
-
-def ws_disconnect(message):
-    print('ws_disconnect')
-    Group('users').send({
-        'text': json.dumps({
-            'username': message.user.username,
-            'is_logged_in': False
-        })
-    })
-    Group('users').discard(message.reply_channel)
 
 
 def user_connect(message):
@@ -44,22 +17,22 @@ def user_connect(message):
     message.reply_channel.send({'accept': accept})
     if accept:
         all_device[cookie_value.decode()] = message.reply_channel.name
-
-
+        print('设备上线', cookie_value.decode(), message.reply_channel.name)
 
 
 def user_disconnect(message):
-    text = message.content.get('text')
-    # print(message.content.reply_channel)
+    print(message.content)
+    device = None
+    for k, v in all_device.items():
+        if v == message.reply_channel.name:
+            device = k
+            del all_device[k]
+            break
+    print('设备下线', device, message.reply_channel.name)
 
 
 def user_receive(message):
     print('收到信息：%s ' % (message.content))
-    text = message.content.get('text')
-    data = json.loads(text)
-    if data.get('device'):
-        print('设备上线', data.get('device'), message.reply_channel.name)
-        all_device[data.get('device')] = message.reply_channel.name
 
 
 def send_invite(message):
