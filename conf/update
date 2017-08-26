@@ -4,5 +4,3 @@ git pull;
 chmod +x conf/*;
 systemctl restart daphne;
 systemctl restart daphnew;
-
-
