@@ -1,0 +1,11 @@
+[Unit]
+Description=Daphne Worker
+[Service]
+ExecStart=/Arduino/daphnew
+Type=simple
+KillSignal=SIGQUIT
+Restart=always
+NotifyAccess=all
+StandardOutput=/var/log/daphne/worker.log
+[Install]
+WantedBy=multi-user.target

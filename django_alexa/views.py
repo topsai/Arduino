@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 import logging
+import subprocess
 import traceback
 from django.conf import settings
 from rest_framework.response import Response
@@ -92,20 +93,20 @@ class ASKView(APIView):
         # reponses and the DRF request object doesn't allow you to access the
         # body after you have accessed the "data" stream
         body = request.body
-        print('body:', body)
-        print('----------------------------------------')
+        # print('body:', body)
+        # print('----------------------------------------')
         ResponseBuilder.set_version(request.data['version'])
-        print('1----------------------------------------')
+        # print('1----------------------------------------')
         validate_alexa_request(request.META, body)
         serializer = ASKInputSerializer(data=request.data)
-        print('data', request.data)
-        print('2----------------------------------------')
+        # print('data', request.data)
+        # print('2----------------------------------------')
         serializer.is_valid(raise_exception=True)
-        print('3----------------------------------------')
+        # print('3----------------------------------------')
         return self.handle_request(serializer.validated_data)
 
     def dispatch(self, request, *args, **kwargs):
-        print('dispatch')
+        # print('dispatch')
         log.debug("#" * 10 + "Start Alexa Request" + "#" * 10)
         response = super(ASKView, self).dispatch(request, *args, **kwargs)
         if response.status_code == 200:
@@ -119,4 +120,12 @@ def update(request):
         # github的钩子被触发了
         data = request.POST
         print(data)
+        p = subprocess.Popen('. /Arduino/update', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p.stdout.encoding = 'utf8'
+        if p.stdout:
+            print('更新成功')
+            print(p.stdout.read())
+        else:
+            print('更新失败')
+            print(p.stderr.read())
 

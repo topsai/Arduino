@@ -1,0 +1,10 @@
+[Unit]
+Description=Daphne Interface Server
+[Service]
+ExecStart=/Arduino/daphne
+Restart=always
+KillSignal=SIGQUIT
+Type=simple
+NotifyAccess=all
+[Install]
+WantedBy=multi-user.target

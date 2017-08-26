@@ -1,0 +1,6 @@
+#!/bin/bash
+cd /Arduino/;
+git pull;
+systemctl restart daphne;
+systemctl restart daphnew;
+

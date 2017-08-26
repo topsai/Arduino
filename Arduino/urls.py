@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^', include('django_alexa.urls')),
     # url(r'^talk/', aviews.talk, name='talksb'),
     url(r'^test/', aviews.test, name='test'),
+
     # url(r'^admin/', admin.site.urls),
     # url(r'^$', views.index),
     # url(r'^login/$', views.login),
