@@ -22,6 +22,7 @@ routing = [
     route('send-invite', send_invite),
     # 同django可以使用include代替route指定路由组
     # include(http_routing),
+
 ]
 
 # http_routing = [
