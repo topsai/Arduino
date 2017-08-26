@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /Arduino/;
 git pull;
+chmox +x conf/*;
 systemctl restart daphne;
 systemctl restart daphnew;
