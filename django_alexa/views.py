@@ -32,7 +32,6 @@ log = logging.getLogger(__name__)
 
 class ASKView(APIView):
     def handle_exception(self, exc):
-        print('exc:', exc)
         if settings.DEBUG:
             log.exception("An error occured in your skill.")
             # msg = "An error occured in your skill.  Please check the response card for details."
@@ -58,15 +57,12 @@ class ASKView(APIView):
                 log.debug(data)
                 return HttpResponseBadRequest()
             else:
-                print('ret data', data)
                 # If we are passed an error code we should probably do something more here, but for now - this works.
                 return Response(data=data, status=HTTP_200_OK)
         except:
-            print('ret data', data)
             return Response(data=data, status=HTTP_200_OK)
 
     def handle_request(self, validated_data):
-        print('handle_request')
         log.info("Alexa Request Body: {0}".format(validated_data))
         intent_kwargs = {}
         session = validated_data['session']
@@ -80,21 +76,17 @@ class ASKView(APIView):
                 except KeyError:
                     slot_value = None
                 intent_kwargs[slot_key] = slot_value
-                print('slot_key:', slot_key, 'slot_value:', slot_value)
         else:
             intent_name = validated_data["request"]["type"]
         _, slot = IntentsSchema.get_intent(app, intent_name)
-        print('slot', slot)
         if slot:
             slots = slot(data=intent_kwargs)
-            print('slots:', slots)
             slots.is_valid()
             intent_kwargs = slots.data
         data = IntentsSchema.route(session, app, intent_name, intent_kwargs)
         return Response(data=data, status=HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        print('post..............')
         # we have to save the request body because we need to set the version
         # before we do anything dangerous so that we can properly send exception
         # reponses and the DRF request object doesn't allow you to access the
@@ -120,3 +112,11 @@ class ASKView(APIView):
             validate_response_limit(response.render().content)
         log.debug("#" * 10 + "End Alexa Request" + "#" * 10)
         return response
+
+
+def update(request):
+    if request.method == 'POST':
+        # github的钩子被触发了
+        data = request.POST
+        print(data)
+

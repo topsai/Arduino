@@ -5,6 +5,9 @@
 
 
 import websocket
+import serial
+
+ser = serial.Serial('/dev/ttyUSB0')
 
 
 def opeate_arduino(device, status):
@@ -18,7 +21,15 @@ def opeate_arduino(device, status):
 
 
 def on_message(ws, message):
-    print(message)
+    device, status = message.split(',')
+    print(device, status)
+    if device == 'light':
+        # 灯
+        if status == 'open' or status == 'on':
+            # turn on the linht
+            ser.write('a')
+        else:
+            ser.write('b')
 
 
 def on_error(ws, error):
@@ -35,7 +46,7 @@ def on_open(ws):
 
 if __name__ == "__main__":
     websocket.enableTrace(True)
-    href = "ws://www.codefarmer.site/talk/"
+    href = "wss://alexa.detaomedia.com/talk/"
     href1 = "ws://127.0.0.1:8000/talk/"
     ws = websocket.WebSocketApp(href,
                                 on_message=on_message,

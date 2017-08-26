@@ -93,7 +93,6 @@ def Operatesomething(session, device, status, ):
     add {points} points to {house}
     give {points} points to {house}
     """
-    print('session, device, status', session, device, status)
     kwargs = {}
     data = {'text': device + ',' + status}
     # from alexa_channel.consumers import all_device
