@@ -120,7 +120,7 @@ def update(request):
         # github的钩子被触发了
         data = request.POST
         print(data)
-        p = subprocess.Popen('. /Arduino/update', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen('. /Arduino/conf/update', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p.stdout.encoding = 'utf8'
         if p.stdout:
             print('更新成功')

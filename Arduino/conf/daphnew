@@ -1,4 +1,4 @@
 #!/bin/bash
 cd /Arduino
 #/Arduino/virtual_env/bin/python manage.py runworker --threads 2 --only-channels=websocket.*
-/Arduino/virtual_env/bin/python manage.py runworker --threads 2 | tee runworker.log
+/Arduino/virtual_env/bin/python manage.py runworker --threads 2 | tee /Arduino/runworker.log

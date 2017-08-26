@@ -1,7 +1,7 @@
 [Unit]
 Description=Daphne Interface Server
 [Service]
-ExecStart=/Arduino/daphne
+ExecStart=/Arduino/conf/daphne
 Restart=always
 KillSignal=SIGQUIT
 Type=simple
