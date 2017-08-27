@@ -119,13 +119,11 @@ def update(request):
     if request.method == 'POST':
         # github的钩子被触发了
         data = request.POST
-        print(data)
+        log.debug(data)
         p = subprocess.Popen('. /Arduino/conf/update', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         p.stdout.encoding = 'utf8'
         if p.stdout:
-            print('更新成功')
-            print(p.stdout.read())
+            log.debug('更新成功', p.stdout.read())
         else:
-            print('更新失败')
-            print(p.stderr.read())
+            log.debug('更新失败', p.stderr.read())
 

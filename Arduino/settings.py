@@ -149,11 +149,12 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'arduino.log'),
+            'formatter': 'standard',
         },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['file'],
+            'handlers': ['file', ],
             'level': 'DEBUG',
             'propagate': True,
         },
