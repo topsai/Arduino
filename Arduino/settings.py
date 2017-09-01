@@ -141,22 +141,22 @@ CHANNEL_LAYERS = {
 }
 # from Arduino.routing import route
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'arduino.log'),
-            'formatter': 'standard',
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['file', ],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'arduino.log'),
+#             'formatter': 'standard',
+#         },
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['file', ],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }

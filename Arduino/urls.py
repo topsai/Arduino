@@ -23,6 +23,9 @@ urlpatterns = [
     # url(r'^talk/', aviews.talk, name='talksb'),
     url(r'^test/', aviews.test, name='test'),
     url(r'^update/', views.update, name='update'),
+    url(r'^mqtt/auth', views.auth, name='auth'),
+    url(r'^mqtt/superuser', views.superuser, name='superuser'),
+    url(r'^mqtt/acl', views.acl, name='acl'),
 
     # url(r'^admin/', admin.site.urls),
     # url(r'^$', views.index),
