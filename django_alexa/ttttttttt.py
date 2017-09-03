@@ -64,7 +64,7 @@ import paho.mqtt.client as mqtt
 import json
 
 clientid = '777'
-url = "http://alexa.detaomedia.com:8080/api/v2/nodes/emq@192.168.100.5/clients/{}".format(clientid)
+url = "http://127.0.0.1:8080/api/v2/nodes/emq@127.0.0.1/clients/{}".format(clientid)
 r = requests.get(url, auth=HTTPBasicAuth('admin', 'admin'))
 print(r.status_code)
 # print(r.encoding)
@@ -76,7 +76,7 @@ data = r.json().get('result').get('objects')
 print(data)
 if data:
     print('on')
-    pub_url = "http://alexa.detaomedia.com:8080/api/v2/mqtt/publish"
+    pub_url = "http://127.0.0.1:8080/api/v2/mqtt/publish"
     post_data = {
         "topic": "$client/777",
         "payload": "open light",
