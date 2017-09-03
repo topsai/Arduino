@@ -2,6 +2,9 @@ from __future__ import absolute_import
 from .api import intent, ResponseBuilder
 from django_alexa.internal import fields
 import redis
+import requests
+from requests.auth import HTTPBasicAuth
+import json
 
 
 @intent
@@ -94,7 +97,7 @@ def Operatesomething(session, device, status, ):
     give {points} points to {house}
     """
     kwargs = {}
-    data = {'text': device + ',' + status}
+    # data = {'text': device + ',' + status}
     # from alexa_channel.consumers import all_device
     # print(all_device)
     # r = redis.Redis(host='127.0.0.1', port=6379, db=0)
@@ -110,11 +113,40 @@ def Operatesomething(session, device, status, ):
     #     kwargs['message'] = "your {0} is {1}.".format(device, status)
     # else:
     #     kwargs['message'] = "your device not online."
+    ddd = ""
+
+    if status == "on" or status == "open":
+        s = "open "
+        ddd = s+device
+    elif status == "off" or status == "close":
+        s = "close "
+        ddd = s + device
+    clientid = '777'
+    url = "http://127.0.0.1:8080/api/v2/nodes/emq@127.0.0.1/clients/{}".format(clientid)
+    r = requests.get(url, auth=HTTPBasicAuth('admin', 'admin'))
+    print(r.status_code)
+    # print(r.encoding)
+    # print(r.text)
+    # print(r.json())
+
+    data = r.json().get('result').get('objects')
+
+    print(data)
+    if data:
+        print('on')
+        pub_url = "http://127.0.0.1:8080/api/v2/mqtt/publish"
+        post_data = {
+            "topic": "$client/777",
+            "payload": ddd,
+        }
+        r = requests.post(pub_url, data=json.dumps(post_data), auth=HTTPBasicAuth('admin', 'admin'))
+        print(r.json())
+        kwargs['message'] = "your {0} is {1}.".format(device, status)
+    else:
+        kwargs['message'] = "your device not online."
 
     if session.get('launched'):
         kwargs['reprompt'] = "ok !"
         kwargs['end_session'] = True
         kwargs['launched'] = session['launched']
     return ResponseBuilder.create_response(**kwargs)
-
-
