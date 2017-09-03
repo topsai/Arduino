@@ -7,7 +7,7 @@
 import websocket
 import serial
 
-ser = serial.Serial('/dev/ttyUSB0')
+# ser = serial.Serial('/dev/ttyUSB0')
 
 
 def opeate_arduino(device, status):
@@ -26,10 +26,12 @@ def on_message(ws, message):
     if device == 'light':
         # 灯
         if status == 'open' or status == 'on':
+            pass
             # turn on the linht
-            ser.write('a')
+            # ser.write('a')
         else:
-            ser.write('b')
+            pass
+            # ser.write('b')
 
 
 def on_error(ws, error):

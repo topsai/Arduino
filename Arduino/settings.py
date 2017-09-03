@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_alexa',
-    'channels',
-    'alexa_channel',
+    # 'channels',
+    # 'alexa_channel',
 ]
 
 MIDDLEWARE = [
