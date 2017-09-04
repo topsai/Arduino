@@ -12,5 +12,5 @@ dist
 build
 
 # My configurations:
-uwsgi.ini
+#uwsgi.ini
 uwsgi.log
